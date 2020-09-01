@@ -1,0 +1,21 @@
+Yes, these steps resolved the issue for me as well (using VMware player 15 something) and adding the After… to /usr/lib/systemd/system/vmtoolsd.service, the content is now:
+
+[Unit]
+Description=Open Virtual Machine Tools (VMware Tools)
+ConditionVirtualization=vmware
+After=display-manager.service
+
+[Service]
+ExecStart=/usr/bin/vmtoolsd
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+--------------------
+
+Disable beep sound
+
+1.    Open "Session And Startup", tab "Application Autostart".
+2.    Add command xset b off as Beep Disabler.
